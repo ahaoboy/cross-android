@@ -1,2 +1,5 @@
 [target.aarch64-linux-android]
-pre-build = ["sudo apt install libssl-dev libsasl2-dev -y"]
+pre-build = [
+    "dpkg --add-architecture $CROSS_DEB_ARCH",
+    "apt-get update && apt-get install --assume-yes libssl-dev:$CROSS_DEB_ARCH"
+]
