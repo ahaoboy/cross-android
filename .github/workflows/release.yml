@@ -19,7 +19,7 @@ jobs:
           toolchain: nightly
           override: true
 
-      - name: "build"
+      - name: "build android"
         run: |
           cargo install cross --git https://github.com/cross-rs/cross
           cross build --target aarch64-linux-android
