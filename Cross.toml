@@ -1,0 +1,2 @@
+[target.aarch64-linux-android]
+pre-build = ["sudo apt install libssl-dev libsasl2-dev -y"]
