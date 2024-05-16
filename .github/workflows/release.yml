@@ -27,5 +27,5 @@ jobs:
       - name: Upload ubuntu Artifact ext
         uses: actions/upload-artifact@v4
         with:
-          name: rs-ext-ubuntu
-          path: ./target/aarch64-linux-android/debug/cross-android
+          name: rs-ext
+          path: ./target/aarch64-linux-android/debug/rs-ext
