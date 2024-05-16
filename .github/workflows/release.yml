@@ -1,0 +1,33 @@
+name: Releases
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  release:
+    name: release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install latest nightly
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly
+          override: true
+
+      - name: "build"
+        run: |
+          cargo install cross --git https://github.com/cross-rs/cross
+          cross build --target aarch64-linux-android
+          apt install tree -y
+          tree ./target
+
+      - name: Upload ubuntu Artifact ext
+        uses: actions/upload-artifact@v4
+        with:
+          name: rs-ext-ubuntu
+          path: ./target/debug/cross-android
